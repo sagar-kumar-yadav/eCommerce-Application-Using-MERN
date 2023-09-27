@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
     token: "",
   });
 
-  // default axios
+  // default axios this is
   axios.defaults.headers.common["Authorization"] = auth?.token;
 
   // here we take data with local storage
