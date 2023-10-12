@@ -2,6 +2,8 @@ import { comparePassword, hashPassword } from "../helpers/authHelper.js";
 import userModel from "../models/userModel.js";
 import JWT from "jsonwebtoken";
 
+// POST | REGISTER ----------------------------------------------------------------------------------
+// here we take input from body to register in application
 export const registerController = async (req, res) => {
   try {
     const { name, email, password, phone, address, answer } = req.body;
@@ -25,9 +27,8 @@ export const registerController = async (req, res) => {
       return res.send({ message: "answer is Required" });
     }
 
-    // check user
+    // check user in our database if user is exist in database we are not going to create user
     const existingUser = await userModel.findOne({ email });
-    // existing user
     if (existingUser) {
       return res.status(200).send({
         success: false,
@@ -35,10 +36,11 @@ export const registerController = async (req, res) => {
       });
     }
 
-    // register user
+    // if user not exist in database we register the user
+    // here we create hashedPassword using hashPassword function that we create in helpers file in authHelper.js
     const hashedPassword = await hashPassword(password);
 
-    // save
+    // save the all the inputs in database
     const user = await new userModel({
       name,
       email,
@@ -47,7 +49,6 @@ export const registerController = async (req, res) => {
       password: hashedPassword,
       answer,
     }).save();
-
     res.status(201).send({
       success: true,
       message: "User Register Successfully",
@@ -63,11 +64,12 @@ export const registerController = async (req, res) => {
   }
 };
 
-// POST LOGIN
+// POST | LOGIN ------------------------------------------------------------------------------------
 export const loginController = async (req, res) => {
   try {
+    // we take email and password to user
     const { email, password } = req.body;
-    //validation
+    // validation
     if (!email || !password) {
       return res.status(404).send({
         success: false,
@@ -75,7 +77,7 @@ export const loginController = async (req, res) => {
       });
     }
 
-    // Check User
+    // Check User email that exist in our database is not, if not then return 404
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(404).send({
@@ -83,14 +85,17 @@ export const loginController = async (req, res) => {
         message: "email is not recognized",
       });
     }
-    //MATCH PASSWORD
+
+    // if user email exist then we compare the password using user password and the database password
     const match = await comparePassword(password, user.password);
+    // if password is not match
     if (!match) {
       return res.status(200).send({
         success: false,
         message: "Invalid Password",
       });
     }
+
     // token
     const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
@@ -99,6 +104,7 @@ export const loginController = async (req, res) => {
       success: true,
       message: "login successful",
       user: {
+        _id: user._id,
         name: user.name,
         email: user.email,
         phone: user.phone,
@@ -117,15 +123,13 @@ export const loginController = async (req, res) => {
   }
 };
 
-// forgotPasswordController
+// forgotPasswordController || POST ----------------------------------------------------------------------------------
 export const forgotPasswordController = async (req, res) => {
   try {
+    // we take inputs from body here and check conditions
     const { email, answer, newPassword } = req.body;
     if (!email) {
       res.status(400).send({ message: "Email is require" });
-    }
-    if (!answer) {
-      res.status(400).send({ message: "answer is require" });
     }
     if (!newPassword) {
       res.status(400).send({ message: "New Password is require" });
@@ -133,7 +137,8 @@ export const forgotPasswordController = async (req, res) => {
     if (!answer) {
       res.status(400).send({ message: "Answer is require" });
     }
-    //check
+
+    // check user email and answer is exist in database or not, if not then response 404
     const user = await userModel.findOne({ email, answer });
     // validation
     if (!user) {
@@ -142,7 +147,10 @@ export const forgotPasswordController = async (req, res) => {
         message: "Wrong Email or Answer",
       });
     }
+
+    // if user exist we hashed the password using hashPassword function that we create in helper function in authHelper.js
     const hashed = await hashPassword(newPassword);
+    // then we find the id in database and update the password
     await userModel.findByIdAndUpdate(user._id, { password: hashed });
     res.status(200).send({
       success: true,
@@ -157,7 +165,7 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
-// test controller
+// test controller ---------------------------------------------------------------------------------
 export const testController = (req, res) => {
   res.send("protected route");
 };

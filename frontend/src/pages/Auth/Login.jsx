@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Layout from "../../components/layout/Layout";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import "./auth.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,47 +42,64 @@ const Login = () => {
   };
 
   return (
-    <Layout title={"Register - Ecommerce App"}>
-      <div className="register">
-        <h1>Login Page</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail"
-              placeholder="Enter Your Email"
-              required
+    <Layout>
+      <div
+        className="wrapper"
+        style={{
+          backgroundImage:
+            'url("src/assets/register/bg-registration-form-1.jpg")',
+        }}
+      >
+        <div className="inner">
+          <div className="image-holder">
+            <img
+              src="src/assets/register/registration-form-1.jpg"
+              alt="reg-girl-img"
             />
           </div>
+          <form onSubmit={handleSubmit}>
+            <h3>Login Form</h3>
 
-          <div className="mb-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Enter Your Password"
-              required
-            />
-          </div>
+            <div className="form-wrapper">
+              <input
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-email" />
+            </div>
 
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => {
-              navigate("/forgot-password");
-            }}
-          >
-            Forgot Password
-          </button>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+            <div className="form-wrapper">
+              <i className="zmdi zmdi-caret-down" style={{ fontSize: 17 }} />
+            </div>
+            <div className="form-wrapper">
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-lock" />
+            </div>
+
+            <div className=" flex flex-col gap-2 items-center justify-center">
+              <button className="reg-btn">
+                Login
+                <i className="zmdi zmdi-arrow-right" />
+              </button>
+              
+                <NavLink className="reg-btn pt-[11px] pb-[11px] pl-[60px] pr-[60px] bg-red-600"  to="/forgot-password">Forgot</NavLink>
+
+               
+              
+            </div>
+          </form>
+        </div>
       </div>
     </Layout>
   );

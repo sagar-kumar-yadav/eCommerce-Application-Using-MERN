@@ -1,7 +1,9 @@
 import JWT from "jsonwebtoken";
 import userModel from "../models/userModel.js";
 
-// protected routes token base
+// here we create middleware to protect routs
+// protected routes | token base ---------------------------------------------------------------
+// requireSignIn middleware - if user in not sign in then user not access the routes
 export const requireSignIn = async (req, res, next) => {
   try {
     const decode = JWT.verify(
@@ -15,7 +17,8 @@ export const requireSignIn = async (req, res, next) => {
   }
 };
 
-// admin access
+// admin access --------------------------------------------------------------------------
+// if user role is 1 then access the admin
 export const isAdmin = async (req, res, next) => {
   try {
     const user = await userModel.findById(req.user._id);

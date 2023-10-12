@@ -1,0 +1,18 @@
+.multi_categories_list{
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: none;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    outline: 0px;
+    left: 0px;
+    width: 15.625rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(200%) blur(1.875rem);
+    height: calc(100vh - 2rem);
+    margin: 1rem;
+    border-radius: 1rem;
+    border: none;
+    padding-top: 4rem;
+}

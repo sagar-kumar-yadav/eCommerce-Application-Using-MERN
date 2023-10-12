@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
 import { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import Header from './Header/Header';
 
 const Layout = ({ children, title, description, keywords, author }) => {
   return (
@@ -17,12 +17,13 @@ const Layout = ({ children, title, description, keywords, author }) => {
         <title>{title}</title>
       </Helmet>
       <Header />
-      <main style={{ minHeight: "74vh" }}>
+      {/* <main style={{ minHeight: "74vh" }}> */}
+      <div>
         <Toaster />
 
         {children}
-      </main>
-      <Footer />
+      </div>
+       {/* <Footer /> */}
     </div>
   );
 };

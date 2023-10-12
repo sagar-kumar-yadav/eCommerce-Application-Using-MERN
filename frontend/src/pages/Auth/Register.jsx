@@ -39,86 +39,108 @@ const Register = () => {
   };
 
   return (
-    <Layout title={"Register - Ecommerce App"}>
-      <div className="register">
-        <h1>Register Page</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-control"
-              id="exampleInputName"
-              placeholder="Enter Your Name"
-              required
+    <Layout>
+      <div
+        className="wrapper"
+        style={{
+          backgroundImage:
+            'url("src/assets/register/bg-registration-form-1.jpg")',
+        }}
+      >
+        <div className="inner mt-20">
+          <div className="image-holder">
+            <img
+              src="src/assets/register/registration-form-1.jpg"
+              alt="reg-girl-img"
             />
           </div>
+          <form onSubmit={handleSubmit}>
+            <h3>Registration Form</h3>
+            <div className="form-group">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="First Name"
+                className="form-control"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                className="form-control"
+              />
+            </div>
 
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail"
-              placeholder="Enter Your Email"
-              required
-            />
-          </div>
+            <div className="form-wrapper">
+              <input
+                type="number"
+                placeholder="Phone Number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-email" />
+            </div>
 
-          <div className="mb-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Enter Your Password"
-              required
-            />
-          </div>
+            <div className="form-wrapper">
+              <input
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-email" />
+            </div>
 
-          <div className="mb-3">
-            <input
-              type="text"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="form-control"
-              id="exampleInputPhone"
-              placeholder="Enter Your Phone"
-              required
-            />
-          </div>
+            <div className="form-wrapper">
+              <i className="zmdi zmdi-caret-down" style={{ fontSize: 17 }} />
+            </div>
+            <div className="form-wrapper">
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-lock" />
+            </div>
 
-          <div className="mb-3">
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="form-control"
-              id="exampleInputAddress"
-              placeholder="Enter Your Address"
-              required
-            />
-          </div>
+            <div className="form-wrapper">
+              <input
+                type="text"
+                placeholder="Address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-email" />
+            </div>
 
-          <div className="mb-3">
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputAnswer"
-              placeholder="What is your favorite sports"
-              required
-            />
-          </div>
+            <div className="form-wrapper">
+              <input
+                type="text"
+                placeholder="What is your favorite sports"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-email" />
+            </div>
 
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+            <button className="reg-btn">
+              Register
+              <i className="zmdi zmdi-arrow-right" />
+            </button>
+          </form>
+        </div>
       </div>
     </Layout>
   );
