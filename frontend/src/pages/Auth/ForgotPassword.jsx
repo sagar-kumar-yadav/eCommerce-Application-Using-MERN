@@ -36,49 +36,68 @@ const ForgotPassword = () => {
 
   return (
     <Layout title={"Forgot Password - Ecommerce APP"}>
-      <div className="register">
-        <h1>Reset Password</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail"
-              placeholder="Enter Your Email"
-              required
+      <div
+        className="wrapper"
+        style={{
+          backgroundImage:
+            'url("src/assets/register/bg-registration-form-1.jpg")',
+        }}
+      >
+        <div className="inner mt-20">
+          <div className="image-holder">
+            <img
+              src="src/assets/register/registration-form-1.jpg"
+              alt="reg-girl-img"
             />
           </div>
+          <form onSubmit={handleSubmit}>
+            <h3>Forget Password</h3>
 
-          <div className="mb-3">
-            <input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Enter New Password Password"
-              required
-            />
-          </div>
+            <div className="form-wrapper">
+              <input
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-email" />
+            </div>
 
-          <div className="mb-3">
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputSports"
-              placeholder="Enter Your Favorite Sports"
-              required
-            />
-          </div>
+            <div className="form-wrapper">
+              <i className="zmdi zmdi-caret-down" style={{ fontSize: 17 }} />
+            </div>
+            <div className="form-wrapper">
+              <input
+                type="password"
+                placeholder="Create New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-lock" />
+            </div>
 
-          <button type="submit" className="btn btn-primary">
-            Reset
-          </button>
-        </form>
+            <div className="form-wrapper">
+              <input
+                type="text"
+                placeholder="What is your favorite sports"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="form-control"
+                required
+              />
+              <i className="zmdi zmdi-email" />
+            </div>
+
+            <button className="reg-btn">
+              Reset Password
+              <i className="zmdi zmdi-arrow-right" />
+            </button>
+          </form>
+        </div>
       </div>
     </Layout>
   );

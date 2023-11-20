@@ -3,8 +3,8 @@ import Layout from "../../../components/layout/Layout";
 import AdminMenu from "../../../components/layout/AdminMenu/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
-import CategoryForm from "../../../components/form/categoryForm";
 import { Modal } from "antd";
+import CategoryForm from "./../../../components/form/CategoryForm";
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -91,53 +91,6 @@ const CreateCategory = () => {
 
   return (
     <Layout title={"Dashboard - Create Category"}>
-      {/* <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
-            <AdminMenu />
-          </div>
-          {/* <table>
-                <thead>
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {categories?.map((c) => (
-                    <>
-                      <tr>
-                        <td key={c._id}>{c.name}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary ms-2"
-                            onClick={() => {
-                              setVisible(true);
-                              setUpdatedName(c.name);
-                              setSelected(c);
-                            }}
-                          >
-                            Edit
-                          </button>
-
-                          <button
-                            className="btn btn-danger ms-2"
-                            onClick={() => {
-                              handleDelete(c._id);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    </>
-                  ))}
-                </tbody>
-              </table> */}
-
-      {/* </div> */}
-      {/* </div>  */}
-
       <div className="app_container ">
         <AdminMenu />
 
@@ -148,38 +101,35 @@ const CreateCategory = () => {
             setValue={setName}
           />
           <div className="flex flex-col max-w-4xl p-6 mx-auto text-white bg-gray-800 mt-5 w-[100%] max-h-[100%] overflow-auto h-[40vh] rounded-lg">
-            <div className="products_list_wrap  ">
-              <div className=" ">
-                {categories?.map((c) => (
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span>{c.name}</span>
-                    </div>
-                    <div>
-                      <button
-                        className=""
-                        onClick={() => {
-                          setVisible(true);
-                          setUpdatedName(c.name);
-                          setSelected(c);
-                        }}
-                      >
-                        Edit
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        className=""
-                        onClick={() => {
-                          handleDelete(c._id);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
+            <div className="">
+              {categories?.map((c) => (
+                <div key={c._id} className="flex justify-between items-center">
+                  <div className="">
+                    <span>{c.name}</span>
                   </div>
-                ))}
-              </div>
+                  <div className="flex">
+                    <button
+                      className=""
+                      onClick={() => {
+                        setVisible(true);
+                        setUpdatedName(c.name);
+                        setSelected(c);
+                      }}
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      className=""
+                      onClick={() => {
+                        handleDelete(c._id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

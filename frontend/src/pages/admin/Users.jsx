@@ -5,14 +5,11 @@ import AdminMenu from "../../components/layout/AdminMenu/AdminMenu";
 const Users = () => {
   return (
     <Layout title={"Dashboard - All Users"}>
-      <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
-            <AdminMenu />
-          </div>
-          <div className="col-md-9">
-            <h1>All Users</h1>
-          </div>
+      <div className=" w-[100%] height-[100%] flex overflow-hidden m-auto gap-[19rem]">
+        <AdminMenu />
+
+        <div className="flex flex-col justify-center items-center gap-2">
+          All User
         </div>
       </div>
     </Layout>

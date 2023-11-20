@@ -92,11 +92,13 @@ const Login = () => {
                 Login
                 <i className="zmdi zmdi-arrow-right" />
               </button>
-              
-                <NavLink className="reg-btn pt-[11px] pb-[11px] pl-[60px] pr-[60px] bg-red-600"  to="/forgot-password">Forgot</NavLink>
 
-               
-              
+              <NavLink
+                className="reg-btn pt-[11px] pb-[11px] pl-[60px] pr-[60px] bg-red-600"
+                to="/forgot-password"
+              >
+                Forgot
+              </NavLink>
             </div>
           </form>
         </div>

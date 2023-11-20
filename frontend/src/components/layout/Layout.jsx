@@ -1,15 +1,14 @@
 import React from "react";
-import Footer from "./Footer/Footer";
+// import Footer from "./Footer/Footer";
 import { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet";
-import Header from './Header/Header';
+import Header from "./Header/Header";
 
 const Layout = ({ children, title, description, keywords, author }) => {
   return (
     <div>
       <Helmet>
         <meta charSet="utf-8" />
-
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <meta name="author" content={author} />
@@ -20,10 +19,9 @@ const Layout = ({ children, title, description, keywords, author }) => {
       {/* <main style={{ minHeight: "74vh" }}> */}
       <div>
         <Toaster />
-
         {children}
       </div>
-       {/* <Footer /> */}
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-// import { HiShoppingBag } from "react-icons/hi";
 import { useAuth } from "../../../context/auth";
 import toast from "react-hot-toast";
 import logo from "../../../assets/logo.png";
-import cart_icon from "../../../assets/cart_icon.png";
+import logo_name from "../../../assets/text_outfit_com.png";
+import SearchInput from "../../form/SearchInput";
+import useCategory from "../../../hooks/useCategory";
+import { useCart } from "../../../context/cart";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const categories = useCategory();
+  const [cart] = useCart();
 
   // in this function we want to logout then we have to clear the local storage and then we navigate to login page
   const handleLogout = () => {
@@ -20,116 +23,128 @@ const Header = () => {
     localStorage.removeItem("auth");
     toast.success("Logout Successfully");
   };
+  console.log(cart.length);
 
-  const handleMouseEnter = () => {
-    setDropdownOpen(true);
-  };
-  const handleMouseLeave = () => {
-    setDropdownOpen(false);
-  };
   return (
     <>
-      <nav className="flex px-4 border-b md:shadow-lg items-center w-[100%] top-0 z-50 fixed bg-white">
-        <div className="text-lg font-bold md:py-0 py-4 w-12 ml-4">
-          <img src={logo} alt="logo-png" />
-        </div>
-        <Link to="/">
-          <span className="px-4 font-bold text-lg text-[#333]">E-commerce</span>
+      <header className="flex justify-between border-b  items-center h-[70px] top-0 z-50 fixed bg-white w-full">
+        {/* logo and app name header here */}
+        <Link to="/" className="flex items-center gap-4 pl-7">
+          <div className="flex items-center min-w-max gap-3">
+            <div className=" md:py-0 w-10 ml-8">
+              <img src={logo} alt="logo-png" width={200} height={200} />
+            </div>
+            <div className="md:py-0 pt-2 w-28">
+              <img src={logo_name} alt="logo-png" width={200} height={200} />
+            </div>
+          </div>
         </Link>
 
-        <ul className="md:px-2 ml-auto md:flex md:space-x-2 absolute md:relative top-full left-0 right-0">
-          <li>
+        <SearchInput />
+
+        <div className="min-w-max">
+          <ul className="flex ">
             <NavLink
               to="/"
               className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
             >
               <span>Home</span>
             </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/category"
-              className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
-            >
-              <span>Category</span>
-            </NavLink>
-          </li>
 
-          {!auth.user ? (
-            <>
-              <li>
-                <NavLink
-                  to="/register"
-                  className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
-                >
-                  <span>Register</span>
-                </NavLink>
-              </li>
+            {/* category dropdown menu ------------------------------------ */}
+            <li className="nav-item dropdown">
+              <Link
+                className="nav-link dropdown-toggle flex md:inline-flex p-4 items-center hover:bg-gray-50"
+                to={"/categories"}
+                data-bs-toggle="dropdown"
+              >
+                Categories
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link className="dropdown-item" to={"/categories"}>
+                    All Categories
+                  </Link>
+                </li>
+                {categories?.map((c) => (
+                  <li key={c._id}>
+                    <Link className="dropdown-item" to={`/category/${c.slug}`}>
+                      {c.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
 
-              <li>
-                <NavLink
-                  to="/login"
-                  className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
-                >
-                  <span>Login</span>
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="relative parent">
-                <NavLink
-                  className="dropdown flex justify-between md:inline-flex p-4 items-center hover:bg-gray-50 space-x-2"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <span>{auth?.user?.name}</span>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-4 h-4 fill-current pt-1"
-                    viewBox="0 0 24 24"
+            {/* if not user then show register and login page ------------------------------------------  */}
+            {!auth.user ? (
+              <>
+                <li>
+                  <NavLink
+                    to="/register"
+                    className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
                   >
-                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-                  </svg>
-                </NavLink>
-                {isDropdownOpen && (
-                  <ul
-                    className="child transition duration-300 md:absolute top-full right-0 md:w-48 bg-white md:shadow-lg md:rounded-b "
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    <span>Register</span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/login"
+                    className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
                   >
+                    <span>Login</span>
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item dropdown">
+                  <NavLink
+                    className="nav-link dropdown-toggle nav-link dropdown-toggle flex md:inline-flex p-4 items-center hover:bg-gray-50"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    style={{ border: "none" }}
+                  >
+                    {auth?.user?.name}
+                  </NavLink>
+                  <ul className="dropdown-menu">
                     <li>
                       <NavLink
                         to={`/dashboard/${
                           auth?.user?.role === 1 ? "admin" : "user"
                         }`}
-                        className="flex px-4 py-3 hover:bg-gray-50"
+                        className="dropdown-item"
                       >
                         Dashboard
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
-                        to="/login"
-                        className="flex px-4 py-3 hover:bg-gray-50"
                         onClick={handleLogout}
+                        to="/login"
+                        className="dropdown-item"
                       >
                         Logout
                       </NavLink>
                     </li>
                   </ul>
-                )}
-              </li>
-            </>
-          )}
+                </li>
+              </>
+            )}
 
-          <li>
-            <NavLink className="flex md:inline-flex p-4 items-center hover:bg-gray-50">
-              <span>cart(0)</span>
-            </NavLink>
-          </li>
-        </ul>
+            <li>
+              <NavLink
+                to="/cart"
+                className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
+              >
+                <span>Shopping bag ({cart?.length})</span>
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+
         <div className="ml-auto md:hidden text-gray-500 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +154,7 @@ const Header = () => {
             <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
           </svg>
         </div>
-      </nav>
+      </header>
     </>
   );
 };

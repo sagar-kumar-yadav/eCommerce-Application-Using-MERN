@@ -8,23 +8,14 @@ const AdminDashboard = () => {
   const [auth] = useAuth();
   return (
     <Layout>
-      {/* <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
-            <AdminMenu />
-          </div>
-          <div className="col-md-9">
-            <div className="card  p-3">
-              <h3>Admin Name: {auth?.user?.name}</h3>
-              <h3>Admin Phone: {auth?.user?.phone}</h3>
-              <h3>Admin email: {auth?.user?.email}</h3>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      <div className=" w-[100%] height-[100%] flex overflow-hidden m-auto gap-[19rem]">
+        <AdminMenu />
 
-      <div className=" h-[96vh] mt-8 pt-10 sidebar">
-        <AdminMenu/>
+        <div className="flex flex-col justify-center items-center gap-2">
+          <h3>Admin Name: {auth?.user?.name}</h3>
+          <h3>Admin Phone: {auth?.user?.phone}</h3>
+          <h3>Admin email: {auth?.user?.email}</h3>
+        </div>
       </div>
     </Layout>
   );
