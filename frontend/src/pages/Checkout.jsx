@@ -10,7 +10,12 @@ const Checkout = () => {
         </section>
 
         <div className="">
+          <main>
 
+          </main>
+          <aside>
+            
+          </aside>
         </div>
       </div>
     </Layout>
