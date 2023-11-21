@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../components/layout/Layout";
+import Layout from "../../components/layout/Layout";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
-import { Prices } from "../components/Prices";
+import { Prices } from "../../components/Prices";
 import "./homepage.css";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/cart";
+import { useCart } from "../../context/cart";
 import toast from "react-hot-toast";
+import Banner from "../../components/HomeBanner/Banner";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -120,8 +121,8 @@ const Homepage = () => {
 
   return (
     <Layout title={"All Products - Best Offers"}>
+      <Banner/>
       <div className="home_container ">
-        <img src="/src/assets/banner/banner.jpg" alt="" />
         <div className="home_content w-[86%] m-auto pt-10">
           <div className="filterBar_cont pb-4 flex flex-col items-center justify-center sticky top-24">
             {/* --------------------------------- category filter ------------------------------------- */}

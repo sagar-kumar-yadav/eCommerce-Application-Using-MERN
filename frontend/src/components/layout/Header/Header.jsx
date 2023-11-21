@@ -27,15 +27,12 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex justify-between border-b  items-center h-[70px] top-0 z-50 fixed bg-white w-full">
+      <header className="flex justify-between   items-center h-[70px] top-0 z-50 fixed bg-transparent w-full">
         {/* logo and app name header here */}
         <Link to="/" className="flex items-center gap-4 pl-7">
-          <div className="flex items-center min-w-max gap-3">
+          <div className="flex items-center ">
             <div className=" md:py-0 w-10 ml-8">
-              <img src={logo} alt="logo-png" width={200} height={200} />
-            </div>
-            <div className="md:py-0 pt-2 w-28">
-              <img src={logo_name} alt="logo-png" width={200} height={200} />
+              <img src="https://www.westside.com/cdn/shop/files/w-logo.png?v=1687335574&width=210" alt="logo-png"/>
             </div>
           </div>
         </Link>

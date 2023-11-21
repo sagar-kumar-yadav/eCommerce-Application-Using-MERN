@@ -1,8 +1,8 @@
 import React from "react";
-import { useCart } from "../context/cart";
-import { useAuth } from "../context/auth";
-import Layout from "../components/layout/Layout";
-import "./cart.css";
+import { useCart } from "../../context/cart";
+import { useAuth } from "../../context/auth";
+import Layout from "../../components/layout/Layout";
+import "/src/assets/css/cart.css";
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {

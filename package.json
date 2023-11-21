@@ -6,18 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "cd frontend && npm run dev",
-    "backend": "cd backend && npm run server",
+    "backend": "cd backend && nodemon server.js",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagar-kumar-yadav/eCommerce-Application-Using-MERN-.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "concurrently": "^8.2.2",
-    "cors": "^2.8.5"
+  "bugs": {
+    "url": "https://github.com/sagar-kumar-yadav/eCommerce-Application-Using-MERN-/issues"
   },
-  "devDependencies": {
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31"
-  }
+  "homepage": "https://github.com/sagar-kumar-yadav/eCommerce-Application-Using-MERN-#readme"
 }

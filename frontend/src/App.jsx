@@ -1,32 +1,33 @@
-import React from "react";
-import Register from "./pages/Auth/Register";
 import { Route, Routes } from "react-router-dom";
-import Login from "./pages/Auth/Login";
-import ForgotPassword from "./pages/Auth/ForgotPassword";
-import PageNotFound from "./pages/PageNotFound";
-import AdminRoute from "./components/Routes/AdminRoute";
-import AdminDashboard from "./pages/admin/AdminDashboard/AdminDashboard";
-import CreateCategory from "./pages/admin/CreateCategory/CreateCategory";
-import CreateProduct from "./pages/admin/CreateProduct/CreateProduct";
-import UpdateProduct from "./pages/admin/CreateProduct/UpdateProduct";
-import Products from "./pages/admin/CreateProduct/Products";
-import Users from "./pages/admin/Users";
-import Homepage from "./pages/Homepage";
-import ProductDetails from "./pages/ProductDetails";
-import Search from "./pages/Search";
-import PrivateRoute from "./components/Routes/Private";
-import Dashboard from "./pages/user/Dashboard";
-import Orders from "./pages/user/Orders";
-import Profile from "./pages/user/Profile";
-import Categories from "./pages/Categories";
-import CategoryProduct from "./pages/CategoryProduct";
-import CartPage from "./pages/CartPage";
-import Checkout from "./pages/Checkout";
+import Homepage from "./pages/home/Homepage";
+import ProductDetails from './pages/product/ProductDetails';
+import Categories from "./pages/Category/Categories";
+import CartPage from "./pages/Cart/CartPage";
+import Checkout from "./pages/Cart/Checkout";
+import CategoryProduct from './pages/Category/CategoryProduct';
+import Search from './pages/Search';
+import PrivateRoute from './components/Routes/Private';
+import Dashboard from './pages/user/Dashboard';
+import Orders from './pages/user/Orders';
+import Profile from './pages/user/Profile';
+import AdminRoute from './components/Routes/AdminRoute';
+import AdminDashboard from './pages/admin/AdminDashboard/AdminDashboard';
+import CreateCategory from './pages/admin/CreateCategory/CreateCategory';
+import CreateProduct from './pages/admin/CreateProduct/CreateProduct';
+import UpdateProduct from './pages/admin/CreateProduct/UpdateProduct';
+import Products from './pages/admin/CreateProduct/Products';
+import Users from './pages/admin/Users';
+import Register from './pages/Auth/Register';
+import ForgotPassword from './pages/Auth/ForgotPassword';
+import Login from './pages/Auth/Login';
+import PageNotFound from './pages/PageNotFound';
+import Banner from "./components/HomeBanner/Banner";
 
 const App = () => {
   return (
     <>
       <Routes>
+      <Route path="/banner" element={<Banner />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/categories" element={<Categories />} />
@@ -53,9 +54,6 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/policy" element={<Policy />} />*/}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
