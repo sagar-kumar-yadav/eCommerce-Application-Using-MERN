@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart";
 import toast from "react-hot-toast";
 import Banner from "../../components/HomeBanner/Banner";
+import MiddleBanner from "../../components/HomeBanner/MiddleBanner";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -122,6 +123,7 @@ const Homepage = () => {
   return (
     <Layout title={"All Products - Best Offers"}>
       <Banner/>
+      {/* <MiddleBanner/> */}
       <div className="home_container ">
         <div className="home_content w-[86%] m-auto pt-10">
           <div className="filterBar_cont pb-4 flex flex-col items-center justify-center sticky top-24">
@@ -181,7 +183,7 @@ const Homepage = () => {
                   <div className="product_name">{p.name}</div>
                   <div className="flex flex-col">
                     {/* <p className="">{p.description.substring(0, 30)}</p> */}
-                    <p className="">$ {p.price}</p>
+                    <p className="">₹ {p.price}</p>
                   </div>
 
                   <button

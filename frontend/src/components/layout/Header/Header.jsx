@@ -7,6 +7,9 @@ import logo_name from "../../../assets/text_outfit_com.png";
 import SearchInput from "../../form/SearchInput";
 import useCategory from "../../../hooks/useCategory";
 import { useCart } from "../../../context/cart";
+import { SlBag } from "react-icons/sl";
+import { FaRegHeart } from "react-icons/fa";
+import Navbar from "./Navbar";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -27,59 +30,27 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex justify-between   items-center h-[70px] top-0 z-50 fixed bg-transparent w-full">
+      <header className="flex justify-between items-center h-[70px] top-0 z-50 fixed bg-[#0a0e11] w-full">
         {/* logo and app name header here */}
         <Link to="/" className="flex items-center gap-4 pl-7">
           <div className="flex items-center ">
-            <div className=" md:py-0 w-10 ml-8">
-              <img src="https://www.westside.com/cdn/shop/files/w-logo.png?v=1687335574&width=210" alt="logo-png"/>
+            <div className=" md:py-0 w-28">
+              <img src="/src/assets/text_outfit_com.png" alt="logo-png" />
             </div>
           </div>
         </Link>
-
+        <Navbar />
         <SearchInput />
 
         <div className="min-w-max">
-          <ul className="flex ">
-            <NavLink
-              to="/"
-              className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
-            >
-              <span>Home</span>
-            </NavLink>
-
-            {/* category dropdown menu ------------------------------------ */}
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle flex md:inline-flex p-4 items-center hover:bg-gray-50"
-                to={"/categories"}
-                data-bs-toggle="dropdown"
-              >
-                Categories
-              </Link>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" to={"/categories"}>
-                    All Categories
-                  </Link>
-                </li>
-                {categories?.map((c) => (
-                  <li key={c._id}>
-                    <Link className="dropdown-item" to={`/category/${c.slug}`}>
-                      {c.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-
+          <ul className="flex items-center text-white mr-8">
             {/* if not user then show register and login page ------------------------------------------  */}
             {!auth.user ? (
               <>
                 <li>
                   <NavLink
                     to="/register"
-                    className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
+                    className="flex md:inline-flex p-2 items-center "
                   >
                     <span>Register</span>
                   </NavLink>
@@ -88,7 +59,7 @@ const Header = () => {
                 <li>
                   <NavLink
                     to="/login"
-                    className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
+                    className="flex md:inline-flex p-2 items-center "
                   >
                     <span>Login</span>
                   </NavLink>
@@ -96,16 +67,44 @@ const Header = () => {
               </>
             ) : (
               <>
+                <ul className="flex items-center gap-2">
+                  <li>
+                    <NavLink
+                      to="/cart"
+                      className="flex md:inline-flex p-2 items-center "
+                    >
+                      <span>
+                        <FaRegHeart className=" fill-white" />
+                      </span>
+                    </NavLink>
+                  </li>
+
+                  <li>
+                    <NavLink
+                      to="/cart"
+                      className="flex md:inline-flex p-2 items-center "
+                    >
+                      <span>
+                        <SlBag className=" fill-white" />
+                        {/* ({cart?.length}) */}
+                      </span>
+                    </NavLink>
+                    <div className=" absolute h-4 w-4 rounded-full justify-center bottom-9 right-[147px] flex items-center text-xs">
+                      <span>{cart?.length}</span>
+                    </div>
+                  </li>
+                </ul>
                 <li className="nav-item dropdown">
                   <NavLink
-                    className="nav-link dropdown-toggle nav-link dropdown-toggle flex md:inline-flex p-4 items-center hover:bg-gray-50"
+                    className="nav-link dropdown-toggle nav-link dropdown-toggle flex md:inline-flex p-4 items-center "
                     href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     style={{ border: "none" }}
                   >
-                    {auth?.user?.name}
+                    Hi {auth?.user?.name}
                   </NavLink>
+
                   <ul className="dropdown-menu">
                     <li>
                       <NavLink
@@ -130,15 +129,6 @@ const Header = () => {
                 </li>
               </>
             )}
-
-            <li>
-              <NavLink
-                to="/cart"
-                className="flex md:inline-flex p-4 items-center hover:bg-gray-50"
-              >
-                <span>Shopping bag ({cart?.length})</span>
-              </NavLink>
-            </li>
           </ul>
         </div>
 

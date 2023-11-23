@@ -7,6 +7,7 @@ import authRoutes from "./routes/authRoute.js";
 import cors from "cors";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import multer from "multer";
 
 // configure env
 dotenv.config();
@@ -27,6 +28,17 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads");
+  },
+  filename: (req, res, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+export const upload = multer({ storage });
+
 // rest api
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to ecommerce app</h1>");
@@ -34,7 +46,6 @@ app.get("/", (req, res) => {
 
 // PORT
 const PORT = process.env.PORT || 8080;
-
 
 // run listen
 app.listen(PORT, () => {

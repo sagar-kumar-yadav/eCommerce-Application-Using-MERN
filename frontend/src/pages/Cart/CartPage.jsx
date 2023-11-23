@@ -5,6 +5,7 @@ import Layout from "../../components/layout/Layout";
 import "/src/assets/css/cart.css";
 import { useNavigate } from "react-router-dom";
 
+
 const CartPage = () => {
   const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
@@ -40,17 +41,6 @@ const CartPage = () => {
   };
 
   return (
-    // <div className="">
-    //   <h1 className="">{`hello ${auth?.token && auth?.user?.name}`}</h1>
-    //   <h4>
-    //     {cart?.length > 1
-    //       ? `You have ${cart.length} items in your cart ${
-    //           auth?.token ? "" : "please login to checkout"
-    //         }`
-    //       : "Your card is empty"}
-    //   </h4>
-
-    // </div>
 
     <Layout>
       <div className="card mt-28">

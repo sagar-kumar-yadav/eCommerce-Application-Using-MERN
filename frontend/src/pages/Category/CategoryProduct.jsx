@@ -24,8 +24,6 @@ const CategoryProduct = () => {
       console.log(error);
     }
   };
-  console.log(products);
-  console.log(category);
 
   return (
     <div>

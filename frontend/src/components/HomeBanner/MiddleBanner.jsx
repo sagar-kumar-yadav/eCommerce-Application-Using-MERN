@@ -4,23 +4,26 @@ import { RxDot } from "react-icons/rx";
 
 const slides = [
   {
-    url: "src/assets/banner/banner2.webp",
+    url: "src/assets/banner/banner6.webp",
   },
   {
-    url: "src/assets/banner/banner3.webp",
+    url: "src/assets/banner/banner7.webp",
   },
   {
-    url: "src/assets/banner/banner1.webp",
+    url: "src/assets/banner/banner8.webp",
   },
   {
-    url: "src/assets/banner/banner5.webp",
+    url: "src/assets/banner/banner9.webp",
   },
   {
-    url: "src/assets/banner/banner4.webp",
+    url: "src/assets/banner/banner10.webp",
+  },
+  {
+    url: "src/assets/banner/banner11.jpg",
   },
 ];
 
-const Banner = () => {
+const MiddleBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const prevSlide = () => {
     const isFirstSlide = currentSlide === 0;
@@ -72,4 +75,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default MiddleBanner;

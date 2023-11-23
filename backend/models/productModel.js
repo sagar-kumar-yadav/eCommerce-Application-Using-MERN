@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema(
     },
     slug: {
       type: String,
-      required: true,
+      // required: true,
     },
     description: {
       type: String,
@@ -17,6 +17,7 @@ const productSchema = new mongoose.Schema(
     price: {
       type: Number,
       require: true,
+  
     },
     category: {
       type: mongoose.ObjectId,
@@ -26,16 +27,16 @@ const productSchema = new mongoose.Schema(
     quantity: {
       type: Number,
       require: true,
+
     },
-    photo: {
-      data: Buffer,
-      contentType: String,
-    },
-    shipping: {
-      type: Boolean,
-    },
+    photos: {
+      type: String, 
+      required: true,
+    } 
   },
   { timestamps: true }
 );
 
 export default mongoose.model("products", productSchema);
+
+

@@ -2,15 +2,27 @@ import fs from "fs";
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import slugify from "slugify";
+import { uploadOnCloudinary } from "../utils/cloudnary.js";
 
-// create product -----------------------------------------------------
+// create product -------- Admin------------------------
 //  when you use formidable you req data from fields for non file
 // if you have files to import then you have to use req.files
 export const createProductController = async (req, res) => {
   try {
     const { name, slug, description, price, category, quantity, shipping } =
-      req.fields;
-    const { photo } = req.files;
+      req.body;
+
+    const photoLocalPath = req.files?.photos[0]?.path;
+    console.log(photoLocalPath);
+
+    // if (!photoLocalPath) {
+    //   throw new ApiError(400, "Avatar file is required");
+    // }
+    const folderName = "product_images";
+    // const localFilePath = "path/to/your/image.jpg";
+    const photos = await uploadOnCloudinary(photoLocalPath, folderName);
+    console.log(photos);
+
     switch (true) {
       case !name:
         return res.status(500).send({ error: "Name is required" });
@@ -26,18 +38,17 @@ export const createProductController = async (req, res) => {
 
       case !quantity:
         return res.status(500).send({ error: "quantity is required" });
-
-      case !photo && photo.size > 1000000:
-        return res
-          .status(500)
-          .send({ error: "photo is req and should less then 1 mb" });
     }
 
-    const products = new productModel({ ...req.fields, slug: slugify(name) });
-    if (photo) {
-      products.photo.data = fs.readFileSync(photo.path);
-      products.photo.contentType = photo.type;
-    }
+    // const products = new productModel({ ...req.body, slug: slugify(name) });
+    const products = await productModel({
+      name,
+      description,
+      price,
+      category,
+      quantity,
+      photos: photos.url,
+    });
     await products.save();
 
     res.status(201).send({
@@ -55,12 +66,12 @@ export const createProductController = async (req, res) => {
   }
 };
 
-// update product -------------------------------------------------------------------
+// update product -------------- Admin -------------------------------------
 export const updateProductController = async (req, res) => {
   try {
-    const { name, description, price, category, quantity, shipping } =
-      req.fields;
-    const { photo } = req.files;
+    const { name, description, price, category, quantity, photo, shipping } =
+      req.body;
+
     switch (true) {
       case !name:
         return res.status(500).send({ error: "Name is required" });
@@ -77,21 +88,15 @@ export const updateProductController = async (req, res) => {
       case !quantity:
         return res.status(500).send({ error: "quantity is required" });
 
-      case !photo && photo.size > 1000000:
-        return res
-          .status(500)
-          .send({ error: "photo is req and should less then 1 mb" });
+      case !photo:
+        return res.status(500).send({ error: "photo is required" });
     }
 
     const products = await productModel.findByIdAndUpdate(
       req.params.pid,
-      { ...req.fields, slug: slugify(name) },
+      { ...req.body, slug: slugify(name) },
       { new: true }
     );
-    if (photo) {
-      products.photo.data = fs.readFileSync(photo.path);
-      products.photo.contentType = photo.type;
-    }
     await products.save();
     res.status(201).send({
       success: true,
