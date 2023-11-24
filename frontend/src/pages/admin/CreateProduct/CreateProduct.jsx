@@ -93,9 +93,7 @@ const CreateProduct = () => {
               </div>
 
               <div>
-                <label className="text-white ">
-                  Product Name
-                </label>
+                <label className="text-white ">Product Name</label>
                 <input
                   id="username"
                   type="text"
@@ -107,13 +105,11 @@ const CreateProduct = () => {
               </div>
 
               <div>
-                <label className="text-white dark:text-gray-200">
-                  Quantity
-                </label>
+                <label className="text-white ">Quantity</label>
                 <input
                   id="number"
                   type="number"
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800  dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                   required
@@ -155,7 +151,7 @@ const CreateProduct = () => {
                 <input
                   id="number"
                   type="number"
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 "
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600 "
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   required
@@ -191,11 +187,13 @@ const CreateProduct = () => {
                           accept="image/*"
                           className="sr-only"
                           onChange={(e) => setPhoto(e.target.files[0])}
+                          multiple
                           required
                         />
                       </label>
                       <p className="pl-1 text-white">or drag and drop</p>
                     </div>
+                    
 
                     <div className="text-xs text-white">
                       PNG, JPG, up to 1MB
