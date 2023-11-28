@@ -2,7 +2,7 @@
   "name": "e-commerce",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "cd frontend && npm run dev",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/sagar-kumar-yadav/eCommerce-Application-Using-MERN-/issues"
   },
-  "homepage": "https://github.com/sagar-kumar-yadav/eCommerce-Application-Using-MERN-#readme"
+  "homepage": "https://github.com/sagar-kumar-yadav/eCommerce-Application-Using-MERN-#readme",
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  }
 }
