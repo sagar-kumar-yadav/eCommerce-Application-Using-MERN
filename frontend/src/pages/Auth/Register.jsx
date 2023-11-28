@@ -48,10 +48,11 @@ const Register = () => {
             'url("src/assets/register/bg-registration-form-1.jpg")',
         }}
       >
-        <div className="inner mt-20">
+        <div className="inner mt-40">
           <div className="image-holder">
             <img
-              src="src/assets/register/registration-form-1.jpg"
+              // src="src/assets/register/registration-form-1.jpg"
+              src="src/assets/banner/banner11.jpg"
               alt="reg-girl-img"
             />
           </div>

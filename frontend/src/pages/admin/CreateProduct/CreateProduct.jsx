@@ -17,6 +17,7 @@ const CreateProduct = () => {
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
 
+
   // get all category
   const getAllCategory = async () => {
     try {
@@ -46,6 +47,7 @@ const CreateProduct = () => {
       productData.append("quantity", quantity);
       productData.append("photo", photo);
       productData.append("category", category);
+      console.log(productData);
 
       const url = "http://localhost:8080/api/v1/product/create-product";
       const { data } = axios.post(url, productData);
@@ -186,14 +188,14 @@ const CreateProduct = () => {
                           type="file"
                           accept="image/*"
                           className="sr-only"
-                          onChange={(e) => setPhoto(e.target.files[0])}
+                          // onChange={(e) => setPhoto(e.target.files[0])}
+                          onChange={(e) => {uploadImages(e.target.files)}}
                           multiple
                           required
                         />
                       </label>
                       <p className="pl-1 text-white">or drag and drop</p>
                     </div>
-                    
 
                     <div className="text-xs text-white">
                       PNG, JPG, up to 1MB

@@ -12,42 +12,26 @@ export const createProductController = async (req, res) => {
     const { name, slug, description, price, category, quantity, shipping } =
       req.body;
 
-    const photoLocalPath = req.files?.photos[0]?.path;
+    const photoLocalPath = req.files?.photos.map((file) => file.path);
     console.log(photoLocalPath);
 
-    // if (!photoLocalPath) {
-    //   throw new ApiError(400, "Avatar file is required");
-    // }
     const folderName = "product_images";
-    // const localFilePath = "path/to/your/image.jpg";
-    const photos = await uploadOnCloudinary(photoLocalPath, folderName);
-    console.log(photos);
 
-    switch (true) {
-      case !name:
-        return res.status(500).send({ error: "Name is required" });
+    const photoUploadPromises = photoLocalPath.map(async (localPath) => {
+      return await uploadOnCloudinary(localPath, folderName);
+    });
 
-      case !description:
-        return res.status(500).send({ error: "description is required" });
+    const uploadedPhotos = await Promise.all(photoUploadPromises);
 
-      case !price:
-        return res.status(500).send({ error: "price is required" });
+    const photoURLs = uploadedPhotos.map((photo) => photo.url);
 
-      case !category:
-        return res.status(500).send({ error: "category is required" });
-
-      case !quantity:
-        return res.status(500).send({ error: "quantity is required" });
-    }
-
-    // const products = new productModel({ ...req.body, slug: slugify(name) });
     const products = await productModel({
       name,
       description,
       price,
       category,
       quantity,
-      photos: photos.url,
+      photos: photoURLs,
     });
     await products.save();
 

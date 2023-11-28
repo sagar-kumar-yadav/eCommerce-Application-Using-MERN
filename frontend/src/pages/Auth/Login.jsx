@@ -53,7 +53,8 @@ const Login = () => {
         <div className="inner">
           <div className="image-holder">
             <img
-              src="src/assets/register/registration-form-1.jpg"
+              // src="src/assets/register/registration-form-1.jpg"
+              src="src/assets/banner/banner11.jpg"
               alt="reg-girl-img"
             />
           </div>

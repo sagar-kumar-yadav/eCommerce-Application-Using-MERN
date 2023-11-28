@@ -20,14 +20,14 @@ const SearchInput = () => {
   };
 
   return (
-    <div className=" flex min-w-[278px] ">
+    <div className=" flex">
       <form
         onSubmit={handleSubmit}
-        className="flex items-center w-96 h-10 border border-solid border-white outline-none "
+        className="flex items-center h-10 border border-solid border-white outline-none "
       >
         <input
           type="search"
-          className=" bg-transparent h-10 text-white  flex-grow border-none focus:outline-none focus:shadow-none"
+          className=" bg-transparent h-10 text-white  flex-grow border-none focus:outline-none focus:shadow-none w-72"
           placeholder="Search for products brand and more"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}

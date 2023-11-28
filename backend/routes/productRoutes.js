@@ -20,26 +20,19 @@ import { upload } from "./../middlewares/multerMiddleware.js";
 const router = express.Router();
 
 // create product
-// router.post(
-//   "/create-product",
-//   upload.fields([
-//     {
-//       name: "photos",
-//     },
-//   ]),
-//   requireSignIn,
-//   isAdmin,
-//   createProductController
-// );
-router.route("/create-product").post(
+router.post(
+  "/create-product",
   upload.fields([
     {
       name: "photos",
-      maxCount: 1,
+      maxCount: 5,
     },
   ]),
+  // requireSignIn,
+  // isAdmin,
   createProductController
 );
+
 
 // update product
 router.put(

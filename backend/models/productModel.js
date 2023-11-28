@@ -17,7 +17,6 @@ const productSchema = new mongoose.Schema(
     price: {
       type: Number,
       require: true,
-  
     },
     category: {
       type: mongoose.ObjectId,
@@ -27,16 +26,15 @@ const productSchema = new mongoose.Schema(
     quantity: {
       type: Number,
       require: true,
-
     },
-    photos: {
-      type: String, 
-      required: true,
-    } 
+    photos: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
   },
   { timestamps: true }
 );
 
 export default mongoose.model("products", productSchema);
-
-

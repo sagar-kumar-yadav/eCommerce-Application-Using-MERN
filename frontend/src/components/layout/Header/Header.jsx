@@ -26,7 +26,7 @@ const Header = () => {
     localStorage.removeItem("auth");
     toast.success("Logout Successfully");
   };
-  console.log(cart.length);
+  // console.log(cart.length);
 
   return (
     <>
@@ -42,7 +42,7 @@ const Header = () => {
         <Navbar />
         <SearchInput />
 
-        <div className="min-w-max">
+        <div className="min-w-max p-2">
           <ul className="flex items-center text-white mr-8">
             {/* if not user then show register and login page ------------------------------------------  */}
             {!auth.user ? (
@@ -89,7 +89,7 @@ const Header = () => {
                         {/* ({cart?.length}) */}
                       </span>
                     </NavLink>
-                    <div className=" absolute h-4 w-4 rounded-full justify-center bottom-9 right-[147px] flex items-center text-xs">
+                    <div className=" absolute h-4 w-4 rounded-full justify-center bottom-9 right-[160px] flex items-center text-xs">
                       <span>{cart?.length}</span>
                     </div>
                   </li>

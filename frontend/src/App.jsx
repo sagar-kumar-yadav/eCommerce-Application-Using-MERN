@@ -21,6 +21,7 @@ import Register from "./pages/Auth/Register";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import Login from "./pages/Auth/Login";
 import PageNotFound from "./pages/PageNotFound";
+import ProductForm from "./components/form/ProductFrom";
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/productForm" element={<ProductForm />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<CartPage />} />

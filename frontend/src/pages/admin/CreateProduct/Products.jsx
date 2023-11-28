@@ -16,7 +16,7 @@ const Products = () => {
       const { data } = await axios.get(url);
       if (data.success) {
         setProducts(data.products);
-        // console.log(data);
+        console.log(data.products);
       }
     } catch (error) {
       console.log(error);
@@ -27,6 +27,7 @@ const Products = () => {
   useEffect(() => {
     getAllProducts();
   }, []);
+
   return (
     <Layout>
       <div className="app_container ">
@@ -43,11 +44,7 @@ const Products = () => {
                 <div className="product_cont">
                   <div className="product_name">{p.name}</div>
                   <div className="product_img">
-                    <img
-                      src={`http://localhost:8080/api/v1/product/product-photo/${p._id}`}
-                      className=""
-                      alt={p.name}
-                    />
+                    <img src={p.photos[0]} className="" alt={p.name} />
                   </div>
                 </div>
               </Link>

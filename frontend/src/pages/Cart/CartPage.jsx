@@ -43,7 +43,7 @@ const CartPage = () => {
   return (
 
     <Layout>
-      <div className="card mt-28">
+      <div className="card pt-28 shadow-none bg-[#e0e5e9]">
         <div className="row">
           <div className="col-md-8 cart">
             <div className="title mb-10">
